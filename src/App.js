@@ -1,44 +1,24 @@
 import React from 'react';
-import Navbar from './components/layout/Navbar';
-import './App.css';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from './components/pages/About'
-import User from './components/layout/Users/User';
-import Alert from './components/layout/Alert';
 import Home from './components/pages/Home';
 import NotFound from './components/pages/NotFound';
-import GithubState from './components/context/github/GithubState';
-import AlertState from './components/context/alert/AlertState';
-
 
 const App = () => {
 
   return (
-      //hacemos el wrap con el context api 
-      <GithubState>
-        <AlertState>
-      <Router>
-        <div className="App">   
-          <Navbar />
-            <div className='container'>
 
-              <Alert />
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/about' component={About} />
-                <Route exact path='/user/:login' 
-                  render={props => (
-                    <User {...props} />       
-                  )} />
-                <Route component={NotFound} />
+    <Router>
+      <div className='container'>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </Router>
 
-              </Switch>
-            </div>
-        </div>
-      </Router>
-      </AlertState>
-      </GithubState>
-    );
+  );
 }
 
 export default App;
