@@ -64,6 +64,7 @@ const FormularioFormik = () => {
                 if (!values.password) {
                     errors.password = 'Required';
                 } else if (
+                    // eslint-disable-next-line no-useless-escape
                     !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/i.test(values.password)
                 ) {
                     errors.password = 'Invalid password only numbers \n The string must contain at least 1 lowercase alphabetical character \n The string must contain at least 1 uppercase alphabetical character \n The string must contain at least 1 numeric character \n The string must contain at least one special character';
