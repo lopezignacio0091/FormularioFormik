@@ -11,10 +11,15 @@ import FormControl from '@material-ui/core/FormControl';
 import SettingsPhoneRoundedIcon from '@material-ui/icons/SettingsPhoneRounded';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
+import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
+import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
+import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
+import {KeyboardDatePicker} from "material-ui-pickers/pickers";
 
 const FormularioFormik = () => {
 
     return (
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Formik
             initialValues={{
                 nombre: '',
@@ -25,7 +30,9 @@ const FormularioFormik = () => {
                 email: '',
                 password: '',
                 age: '',
-                telefono: ''
+                telefono: '',
+                comentarios:'',
+                fechaNacimiento: new Date()
             }}
             validate={values => {
                 const errors = {};
@@ -95,8 +102,9 @@ const FormularioFormik = () => {
             }}
         >
             {({ submitForm, isSubmitting }) => (
+            <Form>
                 <Grid container>
-                    <Form>
+                    <Grid item xs={12} md={6} lg={6}>
                         <Field
                             component={TextField}
                             name="nombre"
@@ -110,7 +118,8 @@ const FormularioFormik = () => {
                                 ),
                             }}
                         />
-
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={6}>
                         <Field
                             component={TextField}
                             name="apellido"
@@ -124,8 +133,9 @@ const FormularioFormik = () => {
                                 ),
                             }}
                         />
-
-                        <FormControl style={{width:'100%'}}>
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={6}>
+                        <FormControl >
                             <InputLabel htmlFor="nacionalidad">Nacionalidad</InputLabel>
                             <Field
                                 component={Select}
@@ -139,8 +149,9 @@ const FormularioFormik = () => {
                                 <MenuItem value={30}>Thirty</MenuItem>
                             </Field>
                         </FormControl>
-                        
-                       <FormControl style={{width:'100%'}}>
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={6}>
+                       <FormControl>
                             <InputLabel htmlFor="age-simple">Edad</InputLabel>
                             <Field
                                 component={Select}
@@ -154,7 +165,12 @@ const FormularioFormik = () => {
                                 <MenuItem value={30}>Thirty</MenuItem>
                             </Field>
                         </FormControl>
-                        
+                    </Grid>    
+
+                    <Grid item xs={12} md={12} lg={12}>
+                        <Field component={KeyboardDatePicker} label="Fecha Nacimiento" name="fechaNacimiento" />;
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={6}>
                         <Field
                             component={TextField}
                             type="Number"
@@ -168,7 +184,23 @@ const FormularioFormik = () => {
                                 ),
                             }}
                         />
-                        
+                    </Grid>    
+                    <Grid item xs={12} md={6} lg={6}>       
+                        <Field
+                            component={TextField}
+                            name="telefono"
+                            type="Number"
+                            label="Telefono"
+                            InputProps={{
+                                startAdornment: (
+                                <InputAdornment position="start">
+                                    <SettingsPhoneRoundedIcon />
+                                </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>    
+                    <Grid item xs={12} md={12} lg={12}>
                         <Field component={RadioGroup} name="genero">
                             <InputLabel htmlFor="genero">Genero</InputLabel>
                             <FormControlLabel
@@ -195,22 +227,10 @@ const FormularioFormik = () => {
                                 label="None"
                                 disabled
                             />
-                            </Field>
-                        
-                        <Field
-                            component={TextField}
-                            name="telefono"
-                            type="Number"
-                            label="Telefono"
-                            InputProps={{
-                                startAdornment: (
-                                <InputAdornment position="start">
-                                    <SettingsPhoneRoundedIcon />
-                                </InputAdornment>
-                                ),
-                            }}
-                        />
-                        
+                        </Field>
+                    </Grid>
+                    
+                    <Grid item xs={12} md={6} lg={6}>
                         <Field
                             component={TextField}
                             name="email"
@@ -224,7 +244,8 @@ const FormularioFormik = () => {
                                 ),
                             }}
                         />
-                        
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={6}>  
                         <Field
                             component={TextField}
                             type="password"
@@ -238,7 +259,31 @@ const FormularioFormik = () => {
                                 ),
                             }}
                         />
+                    </Grid>
+                    
+                    <Grid item xs={12} md={12} lg={12}>  
+                        <Field
+                            component={TextField}
+                            type="text"
+                            label="Comentarios"
+                            name="comentarios"
+                            multiline
+                            rowsMax={4}
+                            InputProps={{
+                                startAdornment: (
+                                <InputAdornment position="start">
+                                    <MessageRoundedIcon />
+                                </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
                         {isSubmitting && <LinearProgress />}
+                    </Grid>
+
+                    <Grid item xs={12} md={12} lg={12}>
                         <Button
                             variant="contained"
                             color="primary"
@@ -254,11 +299,13 @@ const FormularioFormik = () => {
                             onClick={()=>{alert('cancelado')}}
                         >
                             Cancel
-                        </Button>
-                    </Form>
-                </Grid>
+                        </Button>    
+                    </Grid>   
+                </Grid> 
+            </Form>
             )}
         </Formik>
+        </MuiPickersUtilsProvider>
     );
 }
 

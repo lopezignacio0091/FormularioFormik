@@ -4,6 +4,7 @@ import About from './components/pages/About'
 import Home from './components/pages/Home';
 import NotFound from './components/pages/NotFound';
 import Grid from '@material-ui/core/Grid';
+import './App.css';
 
 const App = () => {
 
