@@ -1,9 +1,19 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import FormularioFormik from '../layout/form/FormularioFormik';
+import Grid from '@material-ui/core/Grid';
 
 const Home = () =>( 
-        <Fragment>
-      
-        </Fragment>
+    <Grid
+    container
+    direction="row"
+    justify="center"
+    alignItems="center"
+    style={{margin:'15px'}}
+    >
+        
+        <FormularioFormik />
+
+    </Grid>
 )
 
 export default Home
