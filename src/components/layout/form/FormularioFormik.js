@@ -18,9 +18,7 @@ import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
 //     KeyboardDatePicker,
 //   } from '@material-ui/pickers';
 import {
-    TimePicker,
     DatePicker,
-    DateTimePicker,
   } from 'formik-material-ui-pickers';
   import { MuiPickersUtilsProvider } from '@material-ui/pickers';
   
@@ -178,7 +176,7 @@ const FormularioFormik = () => {
                     </Grid>    
 
                     <Grid item xs={12} md={12} lg={12}>
-                        <Field component={DatePicker} label="Fecha Nacimiento" name="fechaNacimiento" />;
+                        <Field component={DatePicker} label="Fecha Nacimiento" name="fechaNacimiento" />
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
                         <Field
@@ -293,7 +291,7 @@ const FormularioFormik = () => {
                         {isSubmitting && <LinearProgress />}
                     </Grid>
 
-                    <Grid item xs={12} md={12} lg={12}>
+                    <Grid item xs={12} md={12} lg={12} className='botonesForm'>
                         <Button
                             variant="contained"
                             color="primary"

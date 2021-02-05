@@ -10,9 +10,16 @@ const Home = () =>(
     alignItems="center"
     style={{margin:'15px'}}
     >
-        
-        <FormularioFormik />
+        <Grid container item xs={12} sm={12} md={3} lg={3}>
 
+        </Grid>
+        <Grid container item xs={12} sm={12} md={6} lg={6}>
+            <FormularioFormik />
+        </Grid>
+        <Grid container item xs={12} sm={12} md={3} lg={3}>
+
+        </Grid>
+        
     </Grid>
 )
 
