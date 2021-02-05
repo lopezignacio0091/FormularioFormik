@@ -12,18 +12,11 @@ import SettingsPhoneRoundedIcon from '@material-ui/icons/SettingsPhoneRounded';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
 import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
-// import DateFnsUtils from '@date-io/date-fns';
-// import {
-//     MuiPickersUtilsProvider,
-//     KeyboardDatePicker,
-//   } from '@material-ui/pickers';
-import {
-    DatePicker,
-  } from 'formik-material-ui-pickers';
-  import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-  
-  // Depending on the library you picked
-  import DateFnsUtils from '@date-io/date-fns';
+import {DatePicker} from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import Logo from '../../../img/formulario1.jpg';
+
 const FormularioFormik = () => {
 
     return (
@@ -113,6 +106,9 @@ const FormularioFormik = () => {
             {({ submitForm, isSubmitting }) => (
             <Form>
                 <Grid container>
+                    
+                        <img src={Logo} alt='imagenlogo'/>
+                    
                     <Grid item xs={12} md={6} lg={6}>
                         <Field
                             component={TextField}
