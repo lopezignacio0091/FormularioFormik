@@ -12,10 +12,20 @@ import SettingsPhoneRoundedIcon from '@material-ui/icons/SettingsPhoneRounded';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
 import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
-import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
-import DateFnsUtils from "material-ui-pickers/utils/date-fns-utils";
-import {KeyboardDatePicker} from "material-ui-pickers/pickers";
-
+// import DateFnsUtils from '@date-io/date-fns';
+// import {
+//     MuiPickersUtilsProvider,
+//     KeyboardDatePicker,
+//   } from '@material-ui/pickers';
+import {
+    TimePicker,
+    DatePicker,
+    DateTimePicker,
+  } from 'formik-material-ui-pickers';
+  import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+  
+  // Depending on the library you picked
+  import DateFnsUtils from '@date-io/date-fns';
 const FormularioFormik = () => {
 
     return (
@@ -168,7 +178,7 @@ const FormularioFormik = () => {
                     </Grid>    
 
                     <Grid item xs={12} md={12} lg={12}>
-                        <Field component={KeyboardDatePicker} label="Fecha Nacimiento" name="fechaNacimiento" />;
+                        <Field component={DatePicker} label="Fecha Nacimiento" name="fechaNacimiento" />;
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
                         <Field
