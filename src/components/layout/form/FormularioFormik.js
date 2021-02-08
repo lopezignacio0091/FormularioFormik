@@ -1,11 +1,13 @@
 import * as React from 'react';
+import {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {getNacionalidades} from '../../../actions/FormularioActions';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, FormControlLabel, Radio, Grid } from '@material-ui/core';
 import { TextField, Select, RadioGroup } from 'formik-material-ui';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
-import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import SettingsPhoneRoundedIcon from '@material-ui/icons/SettingsPhoneRounded';
@@ -16,8 +18,15 @@ import {DatePicker} from 'formik-material-ui-pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Logo from '../../../img/formulario1.jpg';
+import SelectItems from './selectItems/SelectItems';
 
-const FormularioFormik = () => {
+const FormularioFormik = ({formularioReducer:{nacionalidades}, getNacionalidades}) => {
+
+    useEffect(() => {
+        
+        getNacionalidades();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -149,9 +158,7 @@ const FormularioFormik = () => {
                                     id: 'nacionalidad',
                                 }}
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                               <SelectItems listItems={nacionalidades} />
                             </Field>
                         </FormControl>
                     </Grid>
@@ -165,9 +172,7 @@ const FormularioFormik = () => {
                                     id: 'age-simple',
                                 }}
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                
                             </Field>
                         </FormControl>
                     </Grid>    
@@ -314,4 +319,8 @@ const FormularioFormik = () => {
     );
 }
 
-export default FormularioFormik;
+const mapProps = state => ({
+    formularioReducer : state.formularioReducer
+})
+
+export default connect(mapProps,{getNacionalidades})(FormularioFormik);
