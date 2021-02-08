@@ -5,19 +5,20 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { Field } from 'formik';
 import {  Select  } from 'formik-material-ui';
 
-const SelectItems = ({ listItems }) => {
+const SelectItems = ({ listItems,title, atribute }) => {
     return (
         <FormControl >
-            <InputLabel htmlFor="nacionalidad">Nacionalidad</InputLabel>
+            <InputLabel htmlFor="nacionalidad">{title}</InputLabel>
             <Field
                 component={Select}
-                name="nacionalidad"
+                name={title}
                 inputProps={{
-                    id: 'nacionalidad',
+                    id: {title},
                 }}
+                
             >
                 {listItems.length > 0 && listItems.map((item, index) => (
-                    <MenuItem value={item.name} key={index}>{item.name}</MenuItem>
+                    <MenuItem value={item[atribute]} key={index}>{item[atribute]}</MenuItem>
                 ))
                 }
             </Field>

@@ -1,16 +1,23 @@
 import {
     SET_ERROR, 
     SET_LOADING,
-    SET_NACIONALIDADES
+    SET_NACIONALIDADES,
+    SET_EDADES
 } from '../actions/types';
  
 const initialState = {
     loading: false,
     error: '',
-    nacionalidades: []
+    nacionalidades: [],
+    edades: []
 }
 export default (state = initialState, action) => {
     switch(action.type){
+        case SET_EDADES:
+            return{
+                ...state,
+                edades: action.payload
+            }
         case SET_NACIONALIDADES:
             return{
                 ...state,

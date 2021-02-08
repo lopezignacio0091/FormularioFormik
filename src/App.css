@@ -28,4 +28,5 @@ form{
 form img{
   width: 100%;
   height: 18rem !important;
+  border-radius: 2%;
 }
