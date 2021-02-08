@@ -149,18 +149,9 @@ const FormularioFormik = ({formularioReducer:{nacionalidades}, getNacionalidades
                         />
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
-                        <FormControl >
-                            <InputLabel htmlFor="nacionalidad">Nacionalidad</InputLabel>
-                            <Field
-                                component={Select}
-                                name="nacionalidad"
-                                inputProps={{
-                                    id: 'nacionalidad',
-                                }}
-                            >
+                        
                                <SelectItems listItems={nacionalidades} />
-                            </Field>
-                        </FormControl>
+                        
                     </Grid>
                     <Grid item xs={12} md={6} lg={6}>
                        <FormControl>
