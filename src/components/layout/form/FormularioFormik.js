@@ -6,7 +6,6 @@ import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, FormControlLabel, Radio, Grid } from '@material-ui/core';
 import { TextField, RadioGroup } from 'formik-material-ui';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import InputLabel from '@material-ui/core/InputLabel';
 import SettingsPhoneRoundedIcon from '@material-ui/icons/SettingsPhoneRounded';
@@ -20,6 +19,7 @@ import Logo from '../../../img/formulario1.jpg';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import {  Select  } from 'formik-material-ui';
+import MyTextField from '../form/textField/MyTextField';
 
 const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNacionalidades, getEdades }) => {
 
@@ -116,7 +116,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                             <img src={Logo} alt='imagenlogo' />
 
                             <Grid item xs={12} md={6} lg={6}>
-                                <Field
+                                {/* <Field
                                     component={TextField}
                                     name="nombre"
                                     type="text"
@@ -128,10 +128,13 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                             </InputAdornment>
                                         ),
                                     }}
-                                />
+                                /> */}
+
+                                <MyTextField name="nombre" type="text" label="Nombre" placeholder="Nombre"/>
+
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
-                                <Field
+                                {/* <Field
                                     component={TextField}
                                     name="apellido"
                                     type="text"
@@ -143,7 +146,9 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                             </InputAdornment>
                                         ),
                                     }}
-                                />
+                                /> */}
+                                <MyTextField name="apellido" type="text" label="Apellido" placeholder="Apellido"/>
+
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
                                 {/* <SelectItems listItems={nacionalidades} title={'Nacionalidad'} value={nacionalidad} atribute={'name'}/>                     */}
@@ -155,7 +160,6 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                         inputProps={{
                                             id: 'nacionalidad',
                                         }}
-
                                     >
                                         {nacionalidades.length > 0 && nacionalidades.map((item, index) => (
                                             <MenuItem value={index} key={index}>{item.name}</MenuItem>
