@@ -21,6 +21,7 @@ import FormControl from '@material-ui/core/FormControl';
 import {  Select  } from 'formik-material-ui';
 import MyTextField from '../form/textField/MyTextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import * as Yup from "yup";
 
 const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNacionalidades, getEdades }) => {
 
@@ -29,6 +30,20 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
         getEdades();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const SignupSchema = Yup.object().shape({
+        nombre: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid Name only letters").required('Required'),
+        apellido: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid SurName only letters").required('Required'),
+        email: Yup.string().email('Invalid email').matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/,'Invalid Mail Format').required('Required'),
+        password: Yup.string().min(6,'Too Short!').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,'Invalid password only numbers \n The string must contain at least 1 lowercase alphabetical character \n The string must contain at least 1 uppercase alphabetical character \n The string must contain at least 1 numeric character \n The string must contain at least one special character').required('Required'),
+        nacionalidad: Yup.string().required('Required'),
+        dni: Yup.number().required('Required'),
+        genero: Yup.string().required('Required'),
+        age: Yup.number().required().min(18, 'Min age is 10'),
+        telefono: Yup.number().min(8,'Not valid Telefone too short').required('Required'),
+        comentarios: Yup.string().required('Required'),
+        fechaNacimiento: Yup.date().required('Required')
+    });
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -46,63 +61,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                     comentarios: '',
                     fechaNacimiento: new Date()
                 }}
-                validate={values => {
-                    const errors = {};
-
-                    if (!values.apellido) {
-                        errors.apellido = 'Required';
-                    } else if (
-                        !/^[a-zA-Z ]+$/i.test(values.apellido)
-                    ) {
-                        errors.apellido = 'Invalid Name only letters';
-                    }
-
-                    if (!values.nombre) {
-                        errors.nombre = 'Required';
-                    } else if (
-                        !/^[a-zA-Z ]+$/i.test(values.nombre)
-                    ) {
-                        errors.nombre = 'Invalid Name only letters';
-                    }
-
-                    if (!values.password) {
-                        errors.password = 'Required';
-                    } else if (
-                        // eslint-disable-next-line no-useless-escape
-                        !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/i.test(values.password)
-                    ) {
-                        errors.password = 'Invalid password only numbers \n The string must contain at least 1 lowercase alphabetical character \n The string must contain at least 1 uppercase alphabetical character \n The string must contain at least 1 numeric character \n The string must contain at least one special character';
-                    }
-
-                    if (!values.dni) {
-                        errors.dni = 'Required';
-                    } else if (
-                        !/^\d+$/i.test(values.dni)
-                    ) {
-                        errors.dni = 'Invalid DNI only numbers';
-                    }
-
-                    if (!values.telefono) {
-                        errors.telefono = 'Required';
-                    } else if (
-                        !/^\d+$/i.test(values.telefono)
-                    ) {
-                        errors.telefono = 'Invalid telefono only numbers';
-                    }
-
-                    if (!values.age) {
-                        errors.age = 'Required';
-                    } 
-
-                    if (!values.email) {
-                        errors.email = 'Required';
-                    } else if (
-                        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-                    ) {
-                        errors.email = 'Invalid email address';
-                    }
-                    return errors;
-                }}
+                validationSchema={SignupSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
                         setSubmitting(false);
