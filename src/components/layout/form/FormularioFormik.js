@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getNacionalidades, getEdades } from '../../../actions/FormularioActions';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, FormControlLabel, Radio, Grid } from '@material-ui/core';
-import { TextField, RadioGroup } from 'formik-material-ui';
+import { RadioGroup } from 'formik-material-ui';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -20,6 +20,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import {  Select  } from 'formik-material-ui';
 import MyTextField from '../form/textField/MyTextField';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNacionalidades, getEdades }) => {
 
@@ -116,38 +117,24 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                             <img src={Logo} alt='imagenlogo' />
 
                             <Grid item xs={12} md={6} lg={6}>
-                                {/* <Field
-                                    component={TextField}
-                                    name="nombre"
-                                    type="text"
-                                    label="Nombre"
-                                    InputProps={{
+
+                                <MyTextField name="nombre" type="text" label="Nombre" placeholder="Nombre" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <AccountCircle />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                /> */}
-
-                                <MyTextField name="nombre" type="text" label="Nombre" placeholder="Nombre"/>
+                                    }}/>
 
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
-                                {/* <Field
-                                    component={TextField}
-                                    name="apellido"
-                                    type="text"
-                                    label="Apellido"
-                                    InputProps={{
+                                <MyTextField name="apellido" type="text" label="Apellido" placeholder="Apellido" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <AccountCircle />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                /> */}
-                                <MyTextField name="apellido" type="text" label="Apellido" placeholder="Apellido"/>
+                                    }}/>
 
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
@@ -191,34 +178,23 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                 <Field component={DatePicker} label="Fecha Nacimiento" name="fechaNacimiento" />
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
-                                <Field
-                                    component={TextField}
-                                    type="Number"
-                                    label="DNI"
-                                    name="dni"
-                                    InputProps={{
+                                <MyTextField name="dni" type="Number" label="DNI" placeholder="DNI"  InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <AssignmentRoundedIcon />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                />
+                                    }}/>
+
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
-                                <Field
-                                    component={TextField}
-                                    name="telefono"
-                                    type="Number"
-                                    label="Telefono"
-                                    InputProps={{
+                                <MyTextField name="telefono" type="Number" label="Telefono" placeholder="Telefono" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <SettingsPhoneRoundedIcon />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                />
+                                    }}/>
                             </Grid>
                             <Grid item xs={12} md={12} lg={12}>
                                 <Field component={RadioGroup} name="genero">
@@ -251,52 +227,35 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                             </Grid>
 
                             <Grid item xs={12} md={6} lg={6}>
-                                <Field
-                                    component={TextField}
-                                    name="email"
-                                    type="Email"
-                                    label="Email"
-                                    InputProps={{
+                                <MyTextField name="email" type="Email" label="Email" placeholder="Email"  InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <ContactMailRoundedIcon />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                />
+                                    }}/>
+
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
-                                <Field
-                                    component={TextField}
-                                    type="password"
-                                    label="Password"
-                                    name="password"
-                                    InputProps={{
+                                <MyTextField name="password" type="password" label="Password" placeholder="Password" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <LockOpenRoundedIcon />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                />
+                                    }}/>
+
                             </Grid>
 
                             <Grid item xs={12} md={12} lg={12}>
-                                <Field
-                                    component={TextField}
-                                    type="text"
-                                    label="Comentarios"
-                                    name="comentarios"
-                                    multiline
-                                    rowsMax={4}
-                                    InputProps={{
+                                <MyTextField name="comentarios" type="text" multiline rowsMax={4} label="Comentarios" placeholder="Comentarios" InputProps={{
                                         startAdornment: (
                                             <InputAdornment position="start">
                                                 <MessageRoundedIcon />
                                             </InputAdornment>
                                         ),
-                                    }}
-                                />
+                                    }}/>
+
                             </Grid>
 
                             <Grid item xs={12} md={12} lg={12}>
@@ -311,7 +270,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                     onClick={submitForm}
                                 >
                                     Submit
-                        </Button>
+                                </Button>
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -319,7 +278,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                     onClick={() => { alert('cancelado') }}
                                 >
                                     Cancel
-                        </Button>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Form>
