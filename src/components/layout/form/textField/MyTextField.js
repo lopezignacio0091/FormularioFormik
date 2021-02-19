@@ -3,7 +3,7 @@ import { useField, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 
 const MyTextField = ({ label, ...props }) => {
-    const [field, meta, helpers] = useField(props);
+    const [field, meta] = useField(props);
     return (
     <>
       <Field
