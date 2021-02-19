@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getNacionalidades, getEdades } from '../../../actions/FormularioActions';
+import { getNacionalidades, getEdades, createUser } from '../../../actions/FormularioActions';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, FormControlLabel, Radio, Grid } from '@material-ui/core';
 import { RadioGroup } from 'formik-material-ui';
@@ -24,7 +24,7 @@ import MyTextField from '../form/textField/MyTextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import * as Yup from "yup";
 
-const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNacionalidades, getEdades }) => {
+const FormularioFormik = ({ formularioReducer: { nacionalidades, edades },createUser, getNacionalidades, getEdades }) => {
 
     useEffect(() => {
         getNacionalidades();
@@ -41,7 +41,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
         nacionalidad: Yup.string().required('Required'),
         dni: Yup.number().required('Required'),
         genero: Yup.string().required('Required'),
-        age: Yup.number().required().min(18, 'Min age is 10'),
+        age: Yup.number().required().min(17, 'Min age is 10'),
         telefono: Yup.number().min(8,'Not valid Telefone too short').required('Required'),
         comentarios: Yup.string().required('Required'),
         fechaNacimiento: Yup.date().required('Required')
@@ -66,6 +66,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                 validationSchema={SignupSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
+                        createUser(values);
                         setSubmitting(false);
                         alert(JSON.stringify(values, null, 2));
                     }, 500);
@@ -114,7 +115,6 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                         ))
                                         }
                                     </Field>
-                                    <FormHelperText error={(errors.nacionalidad)}>{(errors.nacionalidad && touched.nacionalidad) && errors.nacionalidad}</FormHelperText>
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} md={6} lg={6}>
@@ -128,7 +128,7 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades }, getNa
                                         }}
                                     >
                                         {edades.length > 0 && edades.map((item, index) => (
-                                            <MenuItem value={item.name} key={index}>{item.name}</MenuItem>
+                                            <MenuItem value={item.val} key={index}>{item.name}</MenuItem>
                                         ))
                                         }
                                     </Field>
@@ -254,4 +254,4 @@ const mapProps = state => ({
     formularioReducer: state.formularioReducer
 })
 
-export default connect(mapProps, { getNacionalidades, getEdades })(FormularioFormik);
+export default connect(mapProps, { getNacionalidades, getEdades, createUser })(FormularioFormik);

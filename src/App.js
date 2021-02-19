@@ -7,6 +7,11 @@ import Grid from '@material-ui/core/Grid';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
+import { makeServer } from './server/MyServerMirage';
+
+if (process.env.NODE_ENV === "development") {
+  makeServer({ environment: "development" })
+}
 
 const App = () => {
 

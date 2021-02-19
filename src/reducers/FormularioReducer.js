@@ -2,7 +2,8 @@ import {
     SET_ERROR, 
     SET_LOADING,
     SET_NACIONALIDADES,
-    SET_EDADES
+    SET_EDADES,
+    SET_NEW_USER
 } from '../actions/types';
  
 const initialState = {
@@ -34,6 +35,11 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: true
             };
+        case SET_NEW_USER:
+            return {
+                ...state,
+                nacionalidades: state.nacionalidades.push(action.payload)
+            }
         default:
             return state;
     }
