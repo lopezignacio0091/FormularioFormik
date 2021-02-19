@@ -1,11 +1,11 @@
-import { createServer, Response } from "miragejs"
+import { createServer, Response } from "miragejs";
 
 createServer({
   routes() {
     this.namespace = "api"
 
     // Responding to a POST request
-    this.post("/movies", (schema, request) => {
+    this.post("/users", (schema, request) => {
       let attrs = JSON.parse(request.requestBody)
       attrs.id = Math.floor(Math.random() * 100)
 
@@ -14,13 +14,13 @@ createServer({
 
     // Using the `timing` option to slow down the response
     this.get(
-      "/movies",
+      "/users",
       () => {
         return {
-          movies: [
-            { id: 1, name: "Inception", year: 2010 },
-            { id: 2, name: "Interstellar", year: 2014 },
-            { id: 3, name: "Dunkirk", year: 2017 },
+          users: [
+            { id: 1, name: "John", year: 2010 },
+            { id: 2, name: "Enz", year: 2014 },
+            { id: 3, name: "William", year: 2017 },
           ],
         }
       },
@@ -28,7 +28,7 @@ createServer({
     )
 
     // Using the `Response` class to return a 500
-    this.delete("/movies/1", () => {
+    this.delete("/users/1", () => {
       let headers = {}
       let data = { errors: ["Server did not respond"] }
 
