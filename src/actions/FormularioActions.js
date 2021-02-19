@@ -22,8 +22,8 @@ export const getNacionalidades = () => dispatch => {
     //         payload: nacionalidades
     //     })
     // })
-    fetch("/api/nacionalidades")
-    .then((res) => res.json())
+    axios.get("/api/nacionalidades")
+    // .then((res) => res.json())
     .then((json) => {
         dispatch({
                     type:SET_NACIONALIDADES,
@@ -44,21 +44,4 @@ export const getEdades = () => dispatch => {
         type:SET_EDADES,
         payload: edades
     })
-}
-
-export const createUser =  (user) => dispatch => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: user.nombre })
-    };
-    fetch('/api/nacionalidades', requestOptions).then(response => response.json()).then(data => {
-                console.log(data)
-        dispatch({
-                    type:SET_NEW_USER,
-                    payload: data.nacionality
-                })        
-            }            
-        );
-
 }
