@@ -23,6 +23,12 @@ export function makeServer({ environment = "test" } = {}) {
         return schema.users.all()
       })
 
+      this.post("/users", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody)
+
+        return schema.users.create(attrs)
+      })
+
       this.get("/nacionalidades", (schema) => {
         return schema.nacionalities.all()
       })

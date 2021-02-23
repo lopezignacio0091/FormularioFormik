@@ -1,7 +1,8 @@
 import {
     SET_ERROR, 
     SET_LOADING,
-    SET_NEW_USER
+    SET_NEW_USER,
+    GET_USERS
 } from '../actions/types';
  
 const initialState = {
@@ -17,6 +18,11 @@ export default (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             } 
+        case GET_USERS:
+            return {
+                ...state,
+                users: action.payload
+            }
         case SET_LOADING:
             return {
                 ...state,
@@ -25,7 +31,7 @@ export default (state = initialState, action) => {
         case SET_NEW_USER:
             return {
                 ...state,
-                users: state.users.push(action.payload)
+                users: [...state.users,action.payload]
             }
         default:
             return state;

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getNacionalidades, getEdades, createUser } from '../../../actions/FormularioActions';
+import { getNacionalidades, getEdades } from '../../../actions/FormularioActions';
+import {createUser} from '../../../actions/HomeActions';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, FormControlLabel, Radio, Grid } from '@material-ui/core';
 import { RadioGroup } from 'formik-material-ui';

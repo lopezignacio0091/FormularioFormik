@@ -1,19 +1,14 @@
 import React from "react";
-import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getUsers } from '../../../actions/HomeActions';
+import {  useEffect } from 'react';
 import MUIDataTable from "mui-datatables";
 
-const UserTable = () => {
-
-    const [data, setData] = useState([]);
+const UserTable = ({homeReducer: {users}, getUsers}) => {
 
     useEffect(() => {
-        fetch("/api/users")
-            .then((res) => res.json())
-            .then((json) => {
-                setData(json.users)
-            })
-
-    }, [])
+        getUsers();
+    }, []);
 
     const columns = ["Id", "Name", "Year"];
 
@@ -27,7 +22,7 @@ const UserTable = () => {
 
             <MUIDataTable
                 title={"Employee list"}
-                data={data.map(e=>{
+                data={users.map(e=>{
                     return [
                         e.id,
                         e.name,
@@ -41,4 +36,8 @@ const UserTable = () => {
     );
 }
 
-export default UserTable
+const mapProps = state => ({
+    homeReducer: state.homeReducer
+})
+
+export default connect(mapProps, { getUsers })(UserTable)

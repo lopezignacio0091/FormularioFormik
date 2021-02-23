@@ -3,7 +3,6 @@ import {
     SET_LOADING,
     SET_NACIONALIDADES,
     SET_EDADES,
-    SET_NEW_USER
 } from './types';
 import axios from 'axios';
 
@@ -14,26 +13,17 @@ export const setLoading = () => {
 }
 
 export const getNacionalidades = () => dispatch => {
-    // axios.get('https://restcountries.eu/rest/v2/all?fields=name;capital;currencies')
-    // .then(response => {
-    //     let nacionalidades = response.data;
-    //     dispatch({
-    //         type:SET_NACIONALIDADES,
-    //         payload: nacionalidades
-    //     })
-    // })
     axios.get("/api/nacionalidades")
-    // .then((res) => res.json())
     .then((json) => {
         dispatch({
                     type:SET_NACIONALIDADES,
-                    payload: json.nacionalities
+                    payload: json.data.nacionalities
                 })
             })
     .catch(e => {
         dispatch({
             type: SET_ERROR,
-            payload: e
+            payload: e 
         })        
     })
 }
