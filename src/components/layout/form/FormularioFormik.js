@@ -65,15 +65,16 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades },create
                     fechaNacimiento: new Date()
                 }}
                 validationSchema={SignupSchema}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting,resetForm }) => {
                     setTimeout(() => {
                         createUser(values);
                         setSubmitting(false);
                         alert(JSON.stringify(values, null, 2));
+                        resetForm();
                     }, 500);
                 }}
             >
-                {({ submitForm, isSubmitting, errors, touched }) => (
+                {({ submitForm, isSubmitting, errors, touched, resetForm }) => (
                     <Form>
                         <Grid container>
 
