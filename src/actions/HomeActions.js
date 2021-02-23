@@ -11,10 +11,10 @@ export const createUser =  (user) => dispatch => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: user.nombre, year: 2021})
     };
+
     fetch('/api/users', requestOptions)
     .then(response => response.json())
     .then(data => {
-                console.log(data)
         dispatch({
                     type:SET_NEW_USER,
                     payload: data.user

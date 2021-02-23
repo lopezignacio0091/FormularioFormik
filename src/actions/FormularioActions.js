@@ -29,9 +29,11 @@ export const getNacionalidades = () => dispatch => {
 }
 
 export const getEdades = () => dispatch => {
-    let edades = [{name:'Menor 18',val: 1},{name:'Mayor 18', val:18}];
-    dispatch({
-        type:SET_EDADES,
-        payload: edades
+
+    axios.get('/api/edades').then((json) => {
+        dispatch({
+            type:SET_EDADES,
+            payload: json.data.edads
+        })
     })
 }

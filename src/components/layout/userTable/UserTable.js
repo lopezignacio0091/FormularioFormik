@@ -8,6 +8,7 @@ const UserTable = ({homeReducer: {users}, getUsers}) => {
 
     useEffect(() => {
         getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const columns = ["Id", "Name", "Year"];

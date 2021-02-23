@@ -6,18 +6,25 @@ export function makeServer({ environment = "test" } = {}) {
 
     models: {
       user: Model,
-      nacionality:Model
+      nacionality:Model,
+      edad: Model,
     },
 
     seeds(server) {
-      server.create("user", { name: "Bob", year: '2020' })
-      server.create("user", { name: "Alice", year: '2020' })
-      server.create("nacionality",{name: 'Argentina'})
-      server.create("nacionality",{name: 'Brasil'})
+      server.create("user", { name: "Bob", year: '2020' });
+      server.create("user", { name: "Alice", year: '2020' });
+      server.create("nacionality",{name: 'Argentina'});
+      server.create("nacionality",{name: 'Brasil'});
+      server.create("edad",{name:'Menor 18',val: 1});
+      server.create("edad",{name:'Mayor 18', val:18});
     },
 
     routes() {
       this.namespace = "api";
+
+      this.get("/edades", (schema) => {
+        return schema.edads.all()
+      })
 
       this.get("/users", (schema) => {
         return schema.users.all()
