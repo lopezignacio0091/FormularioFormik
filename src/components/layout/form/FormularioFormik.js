@@ -30,14 +30,12 @@ const FormularioFormik = ({ formularioReducer: { nacionalidades, edades },create
     useEffect(() => {
         getNacionalidades();
         getEdades();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const SignupSchema = Yup.object().shape({
         nombre: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid Name only letters").required('Required'),
         apellido: Yup.string().min(2, 'Too Short!').max(70, 'Too Long!').matches(/^[a-zA-Z ]+$/,"Invalid SurName only letters").required('Required'),
         email: Yup.string().email('Invalid Mail Format').required('Required'),
-        // eslint-disable-next-line no-useless-escape
         password: Yup.string().min(6,'Too Short!').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,'Invalid password only numbers \n The string must contain at least 1 lowercase alphabetical character \n The string must contain at least 1 uppercase alphabetical character \n The string must contain at least 1 numeric character \n The string must contain at least one special character').required('Required'),
         nacionalidad: Yup.string().required('Required'),
         dni: Yup.number().required('Required'),
